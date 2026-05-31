@@ -1,0 +1,6 @@
+{
+  "name": "University Complaint Management System",
+  "description": "A smart and efficient system to submit, track and resolve complaints within Thal University Bhakkar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
