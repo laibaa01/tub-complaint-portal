@@ -1,10 +1,10 @@
-import { supabase } from './supabaseClient'; // Path check kar lena
+import { supabase } from './supabaseClient'; 
 
 // 1. Complaint ko Supabase mein save karne ka function
 export const insertComplaint = async (complaintData) => {
   try {
     const { data, error } = await supabase
-      .from('complaints') // Supabase par table ka naam 'complaints' hona chahiye
+      .from('complaints') 
       .insert([complaintData])
       .select();
 

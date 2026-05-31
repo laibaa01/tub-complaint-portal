@@ -9,7 +9,7 @@ import { LogIn, LogOut, Menu, X, LayoutDashboard, Home, UserPlus } from 'lucide-
 export default function Navbar({
   currentUser,
   onLoginClick,
-  onRegisterClick,   // ← NEW PROP: App.jsx mein add karna hoga
+  onRegisterClick,   
   onLogout,
   currentView,
   onViewChange
