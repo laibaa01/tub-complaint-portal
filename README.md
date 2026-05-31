@@ -3,6 +3,7 @@
 A role-based Complaint Management System built with React.
 
 ## Login Credentials
+Login is managed via secure database authentication with role-based access control.
 
 ### Student Login
 Email: yourname@tub.edu.pk
