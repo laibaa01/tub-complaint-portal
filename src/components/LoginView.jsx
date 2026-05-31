@@ -22,7 +22,7 @@ export default function LoginView({
   preselectedEmail
 }) {
   const [email, setEmail]           = useState('');
-  const [password, setPassword]     = useState('password');
+  const [password, setPassword]     = useState(''); // <-- FIXED: Default password removed
   const [role, setRole]             = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg]     = useState('');
@@ -44,8 +44,8 @@ export default function LoginView({
       );
       if (user) {
         setRole(user.role);
-        setPassword('password');
-        setInfoMsg(`${user.name} — credentials auto-loaded`);
+        setPassword(''); // <-- FIXED: Kept empty even if email is preselected
+        setInfoMsg(`${user.name} — account selected`);
         const t = setTimeout(() => setInfoMsg(''), 3000);
         return () => clearTimeout(t);
       }
