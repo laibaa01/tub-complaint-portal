@@ -5,12 +5,13 @@ A role-based Complaint Management System built with React.
 ## Login Credentials
 
 ### Student Login
-Email: student@tub.edu.pk
-Password: password
+Email: yourname@tub.edu.pk
+Password: your passsword
 
 ### Admin Login
+
 Email: admin@tub.edu.pk
-Password: password
+Password: admin123
 
 ---
 

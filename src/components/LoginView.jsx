@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Eye, EyeOff, AlertCircle, Sparkles, ShieldCheck, UserPlus } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle, Sparkles, UserPlus } from 'lucide-react';
 import { supabase } from '../supabaseClient'; 
 
 export default function LoginView({
@@ -44,30 +44,7 @@ export default function LoginView({
       return;
     }
 
-    // 1. ADMIN CHECK
-    if (role === 'Administrator') {
-      if (email === 'admin@tub.edu.pk' && password === 'admin123') {
-        onLoginSuccess({ email, role: 'Administrator', name: 'System Admin' });
-        return; 
-      } else {
-        setErrorMsg('Invalid Admin credentials.');
-        return;
-      }
-    }
-
-    // 2. STUDENT CHECK: Pehle check karo account hai ya nahi
-    const { data: userExists, error: checkError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email.trim().toLowerCase())
-      .maybeSingle();
-
-    if (!userExists) {
-      setErrorMsg('Account does not exist. Please register first.');
-      return;
-    }
-
-    // 3. STUDENT CHECK: Ab credentials verify karo
+    // Dynamic Database Authentication
     const { data, error } = await supabase
       .from('users')
       .select('*')
@@ -76,10 +53,15 @@ export default function LoginView({
       .eq('role', role)
       .maybeSingle();
 
+    if (error) {
+      setErrorMsg('Connection error. Please try again.');
+      return;
+    }
+
     if (data) {
       onLoginSuccess(data);
     } else {
-      setErrorMsg('Invalid password or role.');
+      setErrorMsg('Invalid email, password, or role selection.');
     }
   };
 
