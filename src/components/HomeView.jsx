@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import universityImg from '../assets/images/university_image.png';
 import React from 'react';
 import {
   Users,
@@ -70,7 +70,7 @@ export default function HomeView({ onLoginClick, stats }) {
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-500 to-emerald-500 opacity-25 blur-sm" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900 border border-white/10 aspect-video lg:aspect-square flex items-center justify-center">
               <img
-                src="/src/assets/images/university_image.png"
+                src={universityImg}
                 referrerPolicy="no-referrer"
                 alt="Thal University Bhakkar Campus"
                 className="object-cover w-full h-full opacity-90 transition-transform duration-700 hover:scale-105"

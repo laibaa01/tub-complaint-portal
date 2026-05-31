@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import logoImg from '../assets/images/logo.png';
 import React, { useState } from 'react';
 import { LogIn, LogOut, Menu, X, LayoutDashboard, Home } from 'lucide-react';
 
@@ -41,7 +41,7 @@ export default function Navbar({
           >
             <div className="flex items-center justify-center w-10 h-10 rounded-lg overflow-hidden bg-[#0C2340] group-hover:bg-[#112F56] transition-colors">
               <img
-                src="/src/assets/images/logo.png"
+                src={logoImg}
                 alt="Thal University Logo"
                 className="w-10 h-10 object-contain"
                 referrerPolicy="no-referrer"
