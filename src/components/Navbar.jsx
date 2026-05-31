@@ -4,11 +4,12 @@
  */
 import logoImg from '../assets/images/logo.png';
 import React, { useState } from 'react';
-import { LogIn, LogOut, Menu, X, LayoutDashboard, Home } from 'lucide-react';
+import { LogIn, LogOut, Menu, X, LayoutDashboard, Home, UserPlus } from 'lucide-react';
 
 export default function Navbar({
   currentUser,
   onLoginClick,
+  onRegisterClick,   // ← NEW PROP: App.jsx mein add karna hoga
   onLogout,
   currentView,
   onViewChange
@@ -18,14 +19,16 @@ export default function Navbar({
   const handleNavClick = (view, elementId) => {
     setMobileMenuOpen(false);
     onViewChange(view);
-    if (elementId) {
-      setTimeout(() => {
+    setTimeout(() => {
+      if (elementId) {
         const item = document.getElementById(elementId);
         if (item) {
           item.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 100);
-    }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   return (
@@ -100,7 +103,7 @@ export default function Navbar({
               </button>
             )}
 
-            {/* Login / Logout */}
+            {/* Login / Logout / Register */}
             {currentUser ? (
               <div className="flex items-center space-x-4 border-l border-slate-700 pl-4">
                 <button
@@ -118,14 +121,27 @@ export default function Navbar({
                 </button>
               </div>
             ) : (
-              <button
-                onClick={onLoginClick}
-                className="flex items-center space-x-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm font-medium tracking-wide text-white transition-all duration-200 shadow-md shadow-blue-900/20 active:scale-95 cursor-pointer"
-                id="btn-nav-login"
-              >
-                <LogIn className="w-4 h-4" />
-                <span>Login</span>
-              </button>
+              <div className="flex items-center space-x-2 border-l border-slate-700 pl-4">
+                {/* Register Button */}
+                <button
+                  onClick={onRegisterClick}
+                  className="flex items-center space-x-1.5 px-4 py-2 rounded-lg border border-blue-500 hover:bg-blue-500/10 text-blue-300 hover:text-white text-sm font-medium tracking-wide transition-all duration-200 active:scale-95 cursor-pointer"
+                  id="btn-nav-register"
+                >
+                  <UserPlus className="w-4 h-4" />
+                  <span>Register</span>
+                </button>
+
+                {/* Login Button */}
+                <button
+                  onClick={onLoginClick}
+                  className="flex items-center space-x-1.5 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm font-medium tracking-wide text-white transition-all duration-200 shadow-md shadow-blue-900/20 active:scale-95 cursor-pointer"
+                  id="btn-nav-login"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span>Login</span>
+                </button>
+              </div>
             )}
           </div>
 
@@ -178,7 +194,7 @@ export default function Navbar({
             </button>
           )}
 
-          <div className="pt-4 border-t border-slate-800">
+          <div className="pt-4 border-t border-slate-800 space-y-2">
             {currentUser ? (
               <div className="space-y-2">
                 <button
@@ -197,13 +213,25 @@ export default function Navbar({
                 </button>
               </div>
             ) : (
-              <button
-                onClick={() => { setMobileMenuOpen(false); onLoginClick(); }}
-                className="flex items-center justify-center space-x-2 w-full px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-base font-medium transition-colors"
-              >
-                <LogIn className="w-5 h-5" />
-                <span>Login</span>
-              </button>
+              <div className="space-y-2">
+                {/* Mobile Register Button */}
+                <button
+                  onClick={() => { setMobileMenuOpen(false); onRegisterClick(); }}
+                  className="flex items-center justify-center space-x-2 w-full px-4 py-2.5 rounded-lg border border-blue-500 text-blue-300 hover:bg-blue-500/10 text-base font-medium transition-colors"
+                >
+                  <UserPlus className="w-5 h-5" />
+                  <span>Register</span>
+                </button>
+
+                {/* Mobile Login Button */}
+                <button
+                  onClick={() => { setMobileMenuOpen(false); onLoginClick(); }}
+                  className="flex items-center justify-center space-x-2 w-full px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-base font-medium transition-colors"
+                >
+                  <LogIn className="w-5 h-5" />
+                  <span>Login</span>
+                </button>
+              </div>
             )}
           </div>
         </div>

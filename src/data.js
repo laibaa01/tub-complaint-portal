@@ -3,14 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// ❌ Removed TypeScript imports:
-// import { Complaint, User, SystemStats } from './types';
-
 export const MOCK_USERS = [
   {
     id: 'user-student',
     name: 'Laiba Arooj',
     email: 'student@tub.edu.pk',
+    password: '123',
     role: 'Student',
     studentId: 'TUB-2024-F-0842',
     phone: '+92 300 1234567'
@@ -18,7 +16,8 @@ export const MOCK_USERS = [
   {
     id: 'user-it-head',
     name: 'Dr. Kamran Malik',
-    email: 'it-head@tub.edu.pk',
+    email: 'kamran@tub.edu.pk',
+    password: '123',
     role: 'Department Head',
     department: 'IT Support',
     phone: '+92 300 7654321'
@@ -26,7 +25,8 @@ export const MOCK_USERS = [
   {
     id: 'user-academic-head',
     name: 'Prof. Saima Khan',
-    email: 'academics@tub.edu.pk',
+    email: 'saima@tub.edu.pk',
+    password: '123',
     role: 'Department Head',
     department: 'Academics',
     phone: '+92 301 2345678'
@@ -35,6 +35,7 @@ export const MOCK_USERS = [
     id: 'user-admin',
     name: 'Registrar Admin Office',
     email: 'admin@tub.edu.pk',
+    password: '123',
     role: 'Administrator',
     phone: '+92 489 123456'
   }
@@ -89,8 +90,7 @@ export const MOCK_COMPLAINTS = [
   {
     id: 'TUB-2026-0612',
     title: 'Delay in Semester Grade Sheets Issuance',
-    description:
-      'Academic office has not issued semester grade sheets yet.',
+    description: 'Academic office has not issued semester grade sheets yet.',
     category: 'Academics',
     priority: 'Medium',
     status: 'Pending',
@@ -116,8 +116,7 @@ export const MOCK_COMPLAINTS = [
   {
     id: 'TUB-2026-0422',
     title: 'Water filter maintenance required in Hostel',
-    description:
-      'Water cooler in Hostel Block B has bad taste.',
+    description: 'Water cooler in Hostel Block B has bad taste.',
     category: 'Hostel',
     priority: 'High',
     status: 'Resolved',
@@ -143,8 +142,7 @@ export const MOCK_COMPLAINTS = [
   {
     id: 'TUB-2026-0302',
     title: 'Overcharging at Canteen',
-    description:
-      'Canteen charging higher than approved rates.',
+    description: 'Canteen charging higher than approved rates.',
     category: 'Finance/Fee',
     priority: 'Low',
     status: 'Resolved',
@@ -170,8 +168,7 @@ export const MOCK_COMPLAINTS = [
   {
     id: 'TUB-2026-0112',
     title: 'Shuttle Bus Delay Issue',
-    description:
-      'Morning shuttle bus is frequently late.',
+    description: 'Morning shuttle bus is frequently late.',
     category: 'Transport',
     priority: 'Medium',
     status: 'In Progress',
@@ -192,24 +189,5 @@ export const MOCK_COMPLAINTS = [
         updatedBy: 'Transport Manager'
       }
     ]
-  }
-];
-
-export const FAQs = [
-  {
-    q: 'How long does it take to resolve a complaint?',
-    a: 'High: 24-48 hrs, Medium: 3-5 days, Low: up to 10 days.'
-  },
-  {
-    q: 'Can I upload files?',
-    a: 'Yes, up to 5MB attachments allowed.'
-  },
-  {
-    q: 'Who can view complaints?',
-    a: 'Student, assigned department, and admin only.'
-  },
-  {
-    q: 'What if not satisfied?',
-    a: 'You can escalate to admin office.'
   }
 ];

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomeView from './components/HomeView';
 import LoginView from './components/LoginView';
+import RegisterView from './components/RegisterView'; // ← NAYA IMPORT
 import StudentDashboard from './components/StudentDashboard';
 import AdminDashboard from './components/AdminDashboard';
 import { MOCK_COMPLAINTS, MOCK_STATS } from './data';
@@ -71,7 +72,6 @@ export default function App() {
     const newId = `TUB-${Math.floor(1000 + Math.random() * 9000)}`;
     const timestamp = new Date().toISOString();
 
-    // Sirf wahi columns jo Supabase table mein 100% mojood hain
     const supabaseData = {
       id: newId,
       title: newCompDetails.title,
@@ -96,7 +96,6 @@ export default function App() {
 
       console.log("Successfully saved in Supabase!", data);
 
-      // Frontend local state ke liye poora object taake UI kharab na ho
       const stateComplaintFormat = {
         ...supabaseData,
         attachmentName: newCompDetails.attachmentName || null,
@@ -135,7 +134,6 @@ export default function App() {
   // ── 2. ADMIN: UPDATE STATUS IN SUPABASE LIVE ──
   const handleUpdateComplaint = async (id, updatedFields) => {
     try {
-      // Supabase mein row ka status update karo
       const { data, error } = await supabase
         .from('complaints')
         .update({ status: updatedFields.status })
@@ -150,7 +148,6 @@ export default function App() {
 
       console.log("Successfully updated in Supabase!", data);
 
-      // UI state aur stats update karo
       setComplaints((prev) =>
         prev.map((c) => {
           if (c.id === id) {
@@ -184,10 +181,10 @@ export default function App() {
     }
   };
 
-  // ── FIX: HOME PAR JAANE SE PEHLE USER LOGOUT KAREIN (VIVA SECURITY) ──
+  // ── FIX: HOME PAR JAANE SE PEHLE USER LOGOUT KAREIN ──
   const handleNavigate = (view) => {
     if (view === 'home') {
-      setCurrentUser(null); // Home par aate hi session expire/clear ho jayega
+      setCurrentUser(null);
     }
     setCurrentView(view);
   };
@@ -198,6 +195,7 @@ export default function App() {
       <Navbar
         currentUser={currentUser}
         onLoginClick={handleLoginClick}
+        onRegisterClick={() => setCurrentView('register')}  // ← NAYA
         onLogout={handleLogout}
         currentView={currentView}
         onViewChange={handleNavigate}
@@ -213,6 +211,13 @@ export default function App() {
             onLoginSuccess={handleLoginSuccess}
             preselectedEmail={loginPreselectedEmail}
             onBackToHome={() => setCurrentView('home')}
+            onRegisterClick={() => setCurrentView('register')}  // ← NAYA
+          />
+        )}
+
+        {currentView === 'register' && (  // ← NAYA PURA BLOCK
+          <RegisterView
+            onLoginClick={() => setCurrentView('login')}
           />
         )}
 

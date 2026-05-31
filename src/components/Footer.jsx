@@ -5,6 +5,8 @@
 
 import React from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
+// FIX: Image ko top par import karo
+import logoImage from "../assets/images/logo.png";
 
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
@@ -24,7 +26,7 @@ export default function Footer({ onNavigate }) {
   };
 
   return (
-    <footer className="bg-[#0C2340] text-gray-300 border-t border-[#1E3A5F]">
+    <footer id="contact-section-footer" className="bg-[#0C2340] text-gray-300 border-t border-[#1E3A5F]">
 
       {/* Main Footer */}
       <div className="w-full px-4 sm:px-6 lg:px-10 py-12">
@@ -39,7 +41,8 @@ export default function Footer({ onNavigate }) {
             >
               <div className="w-10 h-10 rounded-lg overflow-hidden bg-[#0C2340] flex items-center justify-center">
                 <img
-                  src="/src/assets/images/logo.png"
+                  // FIX: Yahan imported variable use karo
+                  src={logoImage}
                   alt="Logo"
                   className="w-10 h-10 object-contain"
                   onError={(e) => {
